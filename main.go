@@ -25,6 +25,16 @@ func printDescription(d describable.Describable) {
 	fmt.Println(d.Description())
 }
 
+func printDescriptions(d []describable.Describable) error {
+	if d == nil {
+		return fmt.Errorf("empty descriable slice")
+	}
+	for _, val := range d {
+		fmt.Println(val.Description())
+	}
+	return nil
+}
+
 func main() {
 	item1 := item.Item{
 		Name:     "Elma",
@@ -59,6 +69,18 @@ func main() {
 		printDescription(val)
 		fmt.Println("_____________")
 	}
+	fmt.Println("Print Descriptions")
+	fmt.Println("_________________")
+	if _, err := describable.ConvertItemSliceToDescribableSlice(slice); err != nil {
+		fmt.Println(err)
+	}
+	describableSlice, _ := describable.ConvertItemSliceToDescribableSlice(slice)
+
+	err := printDescriptions(describableSlice)
+	if err != nil {
+		return
+	}
+
 	if _, err := totalPrice(slice); err != nil {
 		fmt.Println(err)
 	}
