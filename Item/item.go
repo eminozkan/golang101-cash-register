@@ -11,6 +11,13 @@ type Item struct {
 }
 
 func (it Item) Description() string {
-	str := "Ad:" + it.Name + ", Fiyat :" + fmt.Sprintf("%v", it.Price) + ", Indirimli Fiyat : " + fmt.Sprintf("%v", it.Price-it.Discount)
-	return str
+	return fmt.Sprintf("%Q\n", it)
+}
+
+func (it Item) Format(f fmt.State, verb rune) {
+	val := it.Name
+	if verb == 81 {
+		val = "Ad : " + val + "\nFiyat :" + fmt.Sprintf("%v", it.Price) + "\nIndirimli Fiyat :" + fmt.Sprintf("%v", it.Price-it.Discount)
+	}
+	fmt.Fprintf(f, val)
 }

@@ -46,13 +46,24 @@ func main() {
 
 	slice := []item.Item{item1, item2, item3}
 
+	fmt.Println("Print Items")
+	fmt.Println("____________")
 	for _, val := range slice {
-		fmt.Println(calculatePrice(val))
+		fmt.Printf("%Q\n", val)
+		fmt.Println("_____________")
+	}
+
+	fmt.Println("Print Description")
+	fmt.Println("______________")
+	for _, val := range slice {
 		printDescription(val)
+		fmt.Println("_____________")
 	}
 	if _, err := totalPrice(slice); err != nil {
 		fmt.Println(err)
 	}
+	fmt.Println("Total Price")
+	fmt.Println("______________")
 	tPrice, _ := totalPrice(slice)
 	fmt.Println("Total Price : ", tPrice)
 }
